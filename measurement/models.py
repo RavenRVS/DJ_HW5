@@ -1,5 +1,5 @@
 from django.db import models
-
+from PIL import Image
 
 class Sensor(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название')
@@ -11,4 +11,5 @@ class Measurement(models.Model):
                                   verbose_name='ИД датчика')
     temperature = models.FloatField(verbose_name='Значение температуры')
     created_at = models.DateField(verbose_name='Дата внесения записи', auto_now_add=True)
+    image = models.ImageField(verbose_name='Изображение', null=True)
 
