@@ -10,7 +10,7 @@
 
 Необходимо реализовать REST API для добавления/изменения датчиков, их просмотра и добавления новых измерений температуры.
 
-Требуется задать 2 модели (они уже описаны в models.py):
+Требуется задать 2 модели:
 
 - датчик:
 
@@ -71,28 +71,6 @@
 
 Примеры запросов можно посмотреть в файле [requests.http](./requests.http)
 
-## Подсказки
-
-1. Вам необходимо будет изменить файлы `models.py`, `serializers.py`, `views.py` и `urls.py`. В места, где нужно добавлять код, включены `TODO`-комментарии. После того как вы добавите код, комментарии можно удалить.
-
-2. Для автоматического проставления времени используйте аргументы: `auto_now` (при обновлении) и `auto_now_add` (при создании). Подробнее: https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.DateField.
-
-3. Для сериализатора с подробной информацией по датчику для отображения списка измерений необходимо использовать [вложенный сериализатор](https://www.django-rest-framework.org/api-guide/serializers/#dealing-with-nested-objects). Должен получиться примерно такой код:
-
-```python
-class MeasurementSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Measurement
-        fields = ['temperature', 'created_at']
-
-
-class SensorDetailSerializer(serializers.ModelSerializer):
-    measurements = MeasurementSerializer(read_only=True, many=True)
-
-    class Meta:
-        model = Sensor
-        fields = ['id', 'name', 'description', 'measurements']
-```
 
 ## Доп-задания
 
